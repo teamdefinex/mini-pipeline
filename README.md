@@ -1,2 +1,2 @@
 # mini-pipeline
-Jenkins Shared Library
+Jenkins Shared Library by susantez
