@@ -68,9 +68,11 @@ static def getProject(type) {
     if (type == "maven") {
         return new Maven()
     } else if (type == "cells") {
-        return new Cells()
+        echo "cells"
+        //return new Cells()
     } else if (type == "component-library") {
-        return new ComponentLibrary()
+        echo "component"
+        //return new ComponentLibrary()
     } else {
         throw new IllegalArgumentException("Invalid build type")
     }
