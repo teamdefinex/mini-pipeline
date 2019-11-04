@@ -3,7 +3,6 @@ package com.definex.dso.utils
 
 import com.definex.dso.project.*
 import groovy.transform.Field
-import org.junit.jupiter.engine.Constants
 
 @Field HashSet<String> stagesToSkip = new HashSet<>()
 
@@ -61,7 +60,7 @@ def resolveAgentLabel(params) {
         case Constants.APPLICATION_TYPE_CELLS:
             return Constants.AGENT_CELLS
         case Constants.APPLICATION_TYPE_DEMO:
-            return Constans.AGENT_OTHER
+            return Constants.AGENT_OTHER
         default:
             throw new IllegalArgumentException("Invalid type")
     }
