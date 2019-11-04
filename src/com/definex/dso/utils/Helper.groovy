@@ -14,6 +14,7 @@ def skipStage(stageName) {
 def wrapPipeline(params, body) {
     timeout(time: 3, unit: 'HOURS') {
         timestamps {
+            ansiColor("xterm") {
                 wrapNode(resolveAgentLabel(params)) {
                     try {
                         Event.publish("begin")
@@ -30,6 +31,7 @@ def wrapPipeline(params, body) {
                         Event.publish("completed")
                     }
                 }
+            }
         }
     }
 }
