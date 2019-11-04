@@ -15,7 +15,6 @@ def wrapPipeline(params, body) {
         timestamps {
             ansiColor("xterm") {
                 wrapNode(resolveAgentLabel(params)) {
-                    //    container("ark-openshift-pod") {
                     try {
                         Event.publish("begin")
                         body()
@@ -54,13 +53,15 @@ def wrapStage(stageName, body) {
     }
 }
 
-def resolveAgentLabel(def params) {
+def resolveAgentLabel(params) {
     if (params.type == "maven") {
         return "maven-skopeo"
-    } else if (params.type == "cells" || params.type == "component-library") {
+    } else if (params.type == "cells") {
         return "nodejs8-cells-skopeo"
+    } else if (params.type == "demo") {
+        return ""
     } else {
-        throw new IllegalArgumentException("Invalid type")
+            throw new IllegalArgumentException("Invalid type")
     }
 }
 
