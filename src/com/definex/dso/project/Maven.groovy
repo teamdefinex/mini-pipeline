@@ -1,8 +1,6 @@
 #!/usr/bin/env groovy
 package com.definex.dso.project
 
-
-import devops.Fortify
 import groovy.transform.Field
 
 private @Field semanticVersion
