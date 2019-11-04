@@ -1,8 +1,7 @@
 #!/usr/bin/env groovy
 package com.definex.dso.utils
 
-import devops.event.Event
-import devops.project.*
+import com.definex.dso.project.*
 import groovy.transform.Field
 
 @Field HashSet<String> stagesToSkip = new HashSet<>()
