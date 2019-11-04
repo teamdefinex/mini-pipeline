@@ -78,33 +78,6 @@ static def getProject(type) {
     }
 }
 
-def prepareSonarProject(key, name) {
-    echo "Preparing SonarQube project..."
-    try {
-        def projectIsCreated
-        withSonarQubeEnv("sonar-enterprise") {
-            projectIsCreated = new SonarQube(env.SONAR_HOST_URL, env.SONAR_AUTH_TOKEN, "")
-                    .createProject(key, name)
-        }
-        if (projectIsCreated) {
-            echo "SonarQube project $key is created"
-            // Give relevant groups permission to view analysis results on SonarQube interface
-            build job: "SonarPermissionSyncer",
-                    parameters: [[
-                                         $class: 'StringParameterValue',
-                                         name: 'PROJECT_KEY',
-                                         value: key
-                                 ]],
-                    quietPeriod: 0,
-                    wait: false
-        } else {
-            echo "SonarQube project $key already exists"
-        }
-    } catch (err) {
-        echo "[WARNING] SonarQube project creation failed: $err.message"
-    }
-}
-
 def generateDeploymentParams(params) {
     def deploymentParams = [:]
 
