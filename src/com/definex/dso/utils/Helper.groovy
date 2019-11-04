@@ -3,6 +3,7 @@ package com.definex.dso.utils
 
 import com.definex.dso.project.*
 import groovy.transform.Field
+import org.junit.jupiter.engine.Constants
 
 @Field HashSet<String> stagesToSkip = new HashSet<>()
 
@@ -54,13 +55,14 @@ def wrapStage(stageName, body) {
 }
 
 def resolveAgentLabel(params) {
-    if (params.type == "maven") {
-        return "maven-skopeo"
-    } else if (params.type == "cells") {
-        return "nodejs8-cells-skopeo"
-    } else if (params.type == "demo") {
-        return ""
-    } else {
+    switch (params.type) {
+        case Constants.APPLICATION_TYPE_MAVEN:
+            return Constants.AGENT_MAVEN
+        case Constants.APPLICATION_TYPE_CELLS:
+            return Constants.AGENT_CELLS
+        case Constants.APPLICATION_TYPE_DEMO:
+            return Constans.AGENT_OTHER
+        default:
             throw new IllegalArgumentException("Invalid type")
     }
 }
