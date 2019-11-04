@@ -7,7 +7,8 @@ import groovy.transform.Field
 
 private @Field semanticVersion
 private @Field imageVersion
-private @Field repositoryHelper = new devops.repository.helper()
+private @Field repositoryHelper = new com.definex.dso.scm.RepoHelper()
+
 
 def setVersion(params, version) {
     this.semanticVersion = version
@@ -64,20 +65,6 @@ def performQualityAndSecurityAnalyses() {
             withEnv(['PATH+fortifyPath=/home/jenkins/fortify/bin']){
                 shell """sourceanalyzer -64 -Xmx12G -Xms1G -b "$sonarProjectName" -exclude "**/*.js" mvn clean package -s "${MAVEN_SETTINGS}" -q -DskipTests -B -Dfortify.sca.exclude="**/*.js"
                          sourceanalyzer -64 -Xmx12G -Xms1G -b "$sonarProjectName" -export-build-session "$fortifyReportFileName" -appserver-home "$WORKSPACE/$sonarProjectName-$BUILD_NUMBER" """
-
-                if (fileExists(fortifyReportFileName)) {
-                    withCredentials([usernamePassword(credentialsId: 'fssc-jenkins-user', passwordVariable: 'FSSC_PASSWORD', usernameVariable: 'FSSC_USERNAME')]) {
-                        def fortify = new Fortify(env.FSSC_URL, env.VMAS_URL, FSSC_USERNAME, FSSC_PASSWORD)
-                        fortify.createVMASProject(sonarProjectName, repoInfo.repoSlug)
-                        try {
-                            fortify.withFSSCToken { fsscToken ->
-                                sh """cloudscan -sscurl ${env.FSSC_URL} -ssctoken ${fsscToken} start -upload  --application "${sonarProjectName}" --version TEST -uptoken ${fsscToken} --project-root "${WORKSPACE}" -mbs "${fortifyReportFileName}" -scan -64 -Xmx24g -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled"""
-                            }
-                        } catch (ignored) {
-                            echo "Fortify hata aldı!"
-                        }
-                    }
-                }
             }
 
             if (env.PULL_REQUEST_ID) { // PR analysis
