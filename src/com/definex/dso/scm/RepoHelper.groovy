@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 package com.definex.dso.scm
 
-import com.definex.dsoutils.Event
+import com.definex.dso.utils.Event
 
 /*
  * Repository Helper functions.
