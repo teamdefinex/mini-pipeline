@@ -1,12 +1,17 @@
 #!/usr/bin/env groovy
+import com.definex.dso.utils.*
 
 def call(body) {
 
-    stage('Demo') {
+    def config = new Config()
+    def helper = new Helper()
 
-        echo 'Hello World'
+    def params = config.readConfig(body)
 
-        sayHello 'Susantez'
-
+    helper.wrapPipeline(params) {
+        helper.wrapStage("Demo") {
+            echo 'Hello World'
+            sayHello 'Susantez'
+        }
     }
 }
