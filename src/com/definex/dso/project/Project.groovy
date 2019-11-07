@@ -11,7 +11,7 @@ abstract class Project {
     }
 
     void checkout() {
-        new devops.repository.helper().checkout()
+        new com.definex.dso.service.scm.repository.helper().checkout()
     }
     void setVersion(version) {}
     void buildArtifact() {}
