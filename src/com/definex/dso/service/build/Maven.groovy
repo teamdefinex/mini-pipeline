@@ -1,4 +1,4 @@
-
+package com.definex.dso.service.build
 
 def build(params) {
     final def buildTemplate = libraryResource "build-template.yml"
