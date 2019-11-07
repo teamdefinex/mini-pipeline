@@ -1,6 +1,6 @@
 package com.definex.dso.project
 
-abstract class ProjectX {
+abstract class Project {
     def script, params, version
 
     Project(script, params) {

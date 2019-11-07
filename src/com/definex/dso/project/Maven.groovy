@@ -1,7 +1,7 @@
 package com.definex.dso.project
 
 
-class Maven extends ProjectX {
+class Maven extends Project {
     Maven(script, params) {
         super(script, params)
     }
