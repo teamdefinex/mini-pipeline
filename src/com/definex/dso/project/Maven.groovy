@@ -1,6 +1,5 @@
 package com.definex.dso.project
 
-import com.definex.dso.service.*
 
 class Maven extends Project {
     Maven(script, params) {
