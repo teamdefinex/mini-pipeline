@@ -67,17 +67,12 @@ def resolveAgentLabel(params) {
     }
 }
 
-static def getProject(type) {
-    if (type == "maven") {
-        return new Maven()
-    } else if (type == "cells") {
-        echo "cells"
-        //return new Cells()
-    } else if (type == "component-library") {
-        echo "component"
-        //return new ComponentLibrary()
-    } else {
-        throw new IllegalArgumentException("Invalid build type")
+def getProject(params) {
+    switch (params.type) {
+        case Constants.APPLICATION_TYPE_MAVEN:
+            return new Maven(this, params)
+        default:
+            throw new IllegalArgumentException("Invalid type")
     }
 }
 

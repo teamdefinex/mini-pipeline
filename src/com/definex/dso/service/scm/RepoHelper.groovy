@@ -1,5 +1,5 @@
 #!/usr/bin/env groovy
-package com.definex.dso.scm
+package com.definex.dso.service.scm
 
 import com.definex.dso.utils.Event
 
