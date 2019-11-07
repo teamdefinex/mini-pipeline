@@ -71,6 +71,8 @@ def getProject(params) {
     switch (params.type) {
         case Constants.APPLICATION_TYPE_MAVEN:
             return new Maven(this, params)
+        case Constants.APPLICATION_TYPE_DEMO:
+            return new Maven(this, params)
         default:
             throw new IllegalArgumentException("Invalid type")
     }
