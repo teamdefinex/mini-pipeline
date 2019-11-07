@@ -10,7 +10,7 @@ abstract class Project {
     }
 
     void checkout() {
-        script.echo "constructor with params"
+        script.echo "checkout"
     }
     void setVersion(version) {}
     void buildArtifact() {}
