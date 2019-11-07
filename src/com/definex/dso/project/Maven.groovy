@@ -1,6 +1,5 @@
 package com.definex.dso.project
 
-
 class Maven extends Project {
     Maven(script, params) {
         super(script, params)
@@ -24,6 +23,7 @@ class Maven extends Project {
 
     }
 
+    /*
     String getVersion() {
         if (this.version) {
             return this.version
@@ -32,4 +32,6 @@ class Maven extends Project {
             version = sh(returnStdout: true, script: 'printf \'VER\t${project.version}\' | mvn -s \"$MAVEN_SETTINGS\"  help:evaluate | grep \'^VER\' | cut -f2').trim()
         }
     }
+
+     */
 }
