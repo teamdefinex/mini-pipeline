@@ -1,4 +1,3 @@
-#!/usr/bin/env groovy
 package com.definex.dso.project
 
 abstract class Project {
@@ -11,7 +10,7 @@ abstract class Project {
     }
 
     void checkout() {
-        new com.definex.dso.service.scm.repository.helper().checkout()
+        new com.definex.dso.service.scm.RepoHelper.checkout()
     }
     void setVersion(version) {}
     void buildArtifact() {}
