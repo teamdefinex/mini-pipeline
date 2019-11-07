@@ -16,7 +16,8 @@ class Maven extends Project {
     }
 
     void buildArtifact() {
-        new com.definex.dso.service.build.Maven().buildArtifact(this.params)
+        script.echo "build artifact"
+        //new com.definex.dso.service.build.Maven().buildArtifact(this.params)
     }
 
     void buildImage() {
