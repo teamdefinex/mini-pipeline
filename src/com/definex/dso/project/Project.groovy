@@ -10,7 +10,7 @@ abstract class Project {
     }
 
     void checkout() {
-        new com.definex.dso.service.scm.RepoHelper.checkout()
+        script.echo "constructor with params"
     }
     void setVersion(version) {}
     void buildArtifact() {}
